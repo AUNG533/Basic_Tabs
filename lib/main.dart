@@ -34,27 +34,35 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: DefaultTabController(
+        // initialIndex: 2,
         length: choices.length,
         child: Scaffold(
-            appBar: AppBar(
-          title: Text(appTitle),
-          bottom: TabBar(
-            isScrollable: true,
-              tabs: choices.map((Choice choice) {
-            return Tab(
-              // text: choice.title,
-              // icon: Icon(choice.icon),
-              child: Row(
-                children: [Icon(choice.icon),
-                Container(
-                  margin: EdgeInsets.only(left: 8),
-                  child: Text(choice.title),
-                ),
-                ],
-              ),
-            );
-          }).toList()),
-        ),),
+          appBar: AppBar(
+            title: Text(appTitle),
+            bottom: TabBar(
+                // unselectedLabelColor: Colors.black,
+                // indicatorWeight: 10,
+                // indicatorColor: Colors.black,
+                // labelColor: Colors.green,
+                isScrollable: true,
+                onTap: (index) {
+                  print("index: ${index}");
+                },
+                tabs: choices.map((Choice choice) {
+                  return Tab(
+                    text: choice.title,
+                    icon: Icon(choice.icon),
+                  );
+                }).toList()),
+          ),
+          body: TabBarView(
+            children: choices.map((Choice choice) {
+              return Center(
+                child: Text(choice.title),
+              );
+            }).toList(),
+          ),
+        ),
       ),
     );
   }
