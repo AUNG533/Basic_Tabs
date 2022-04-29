@@ -39,21 +39,6 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: Text(appTitle),
-            bottom: TabBar(
-                // unselectedLabelColor: Colors.black,
-                // indicatorWeight: 10,
-                // indicatorColor: Colors.black,
-                // labelColor: Colors.green,
-                isScrollable: true,
-                onTap: (index) {
-                  print("index: ${index}");
-                },
-                tabs: choices.map((Choice choice) {
-                  return Tab(
-                    text: choice.title,
-                    icon: Icon(choice.icon),
-                  );
-                }).toList()),
           ),
           body: TabBarView(
             children: choices.map((Choice choice) {
@@ -61,6 +46,22 @@ class MyApp extends StatelessWidget {
                 child: Text(choice.title),
               );
             }).toList(),
+          ),
+          bottomNavigationBar: SafeArea(
+            child: Container(
+              color: Theme.of(context).primaryColor,
+              child: TabBar(
+                  isScrollable: true,
+                  onTap: (index) {
+                    print("index: ${index}");
+                  },
+                  tabs: choices.map((Choice choice) {
+                    return Tab(
+                      text: choice.title,
+                      icon: Icon(choice.icon),
+                    );
+                  }).toList()),
+            ),
           ),
         ),
       ),
